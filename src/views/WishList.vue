@@ -1,6 +1,7 @@
 <template>
 
     <v-container class="bg-surface-variant">
+        <FormCreate />
         <v-row no-gutters>
             <v-col cols="3">
                 <h2 class="text-green ma-5  text-h4 text-md-h4 text-lg-h2">WishList4You</h2>
@@ -28,6 +29,7 @@
 
 
 <script setup>
+import FormCreate from '../components/FormCreate.vue'
 import {ref} from 'vue'
 const cards = ref([
     {

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import WishList from '../views/WishList.vue'
-
+import FormCreate from '../components/FormCreate.vue'
 const routes = [
   {
     path: '/wishlist',
@@ -11,6 +11,11 @@ const routes = [
     path: '',
     name: 'WishList',
     component: WishList
+  },
+  {
+    path: '/formcreate',
+    name: 'FormCreate',
+    component: FormCreate
   },
 ]
 
