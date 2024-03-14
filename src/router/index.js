@@ -4,7 +4,12 @@ import WishList from '../views/WishList.vue'
 const routes = [
   {
     path: '/wishlist',
-    name: 'wishlist',
+    name: 'WishList',
+    component: WishList
+  },
+  {
+    path: '',
+    name: 'WishList',
     component: WishList
   },
 ]
