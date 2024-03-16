@@ -10,18 +10,11 @@
 
 
         <div class="d-flex justify-space-evenly flex-wrap flex-row">
-            <v-card width="300px" class="mt-5" v-for="card in cards" :key="card.id">
-                <v-card-title class="text-h6 text-md-h5 text-lg-h4">{{card.title}}</v-card-title>
-                <v-card-text>
-                    {{ card.description }}
-                </v-card-text>
-                <v-card-text :class="{
-                    'card-completed': card.isActive,
-                    'card-incompleted': !card.isActive,
-                }">
-                    {{ card.isActive ? 'Выполнено' : 'Не выполнено' }}
-                </v-card-text>
-            </v-card> 
+           <app-card 
+           v-for="(item, index) in cards" 
+           :card="item" 
+           :index="index"
+           :key="item.id" />
         </div>
     </v-container>
 </template>
@@ -30,6 +23,7 @@
 
 <script setup>
 import FormCreate from '../components/FormCreate.vue'
+import AppCard from '../components/AppCard.vue'
 import {ref} from 'vue'
 const cards = ref([
     {
@@ -54,12 +48,6 @@ const cards = ref([
 </script>
 <style scoped>
 
-.card-completed{
-background-color: greenyellow;
-}
-.card-incompleted{
-background-color: crimson;
-color: white;
-}
+
 </style>
 

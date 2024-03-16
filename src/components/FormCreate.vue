@@ -6,7 +6,6 @@
                 <h3 class="text-green ma-5  text-h4 text-md-h4 text-lg-h3">Добавить новое желание</h3>
              </v-col>
         </v-row>
-
         <v-form v-model="valid" @submit.prevent="addCard">
     <v-container>
       <v-row>
@@ -46,19 +45,12 @@
                 block
             ></v-btn>
         </v-col>
-      </v-row>
-      
+      </v-row>    
     </v-container>
-
-      
   </v-form>
-
 </v-container>
-
 </template>
-
 <script setup>
-
 const addCard = () =>
 {
     if(newCard.isActive == 'Выполнено'){
@@ -74,12 +66,6 @@ const newCard = {
     description: '',
     isActive: false,
 }
-
-
 </script>
-
-
-
 <style >
-
 </style>
