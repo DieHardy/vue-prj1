@@ -5,12 +5,14 @@ const routes = [
   {
     path: '/wishlist',
     name: 'WishList',
-    component: WishList
+    component: WishList,
+    props: true,
   },
   {
     path: '',
     name: 'WishList',
-    component: WishList
+    component: WishList,
+    props: true,
   },
   {
     path: '/formcreate',

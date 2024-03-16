@@ -51,6 +51,9 @@
 </v-container>
 </template>
 <script setup>
+
+
+
 const addCard = () =>
 {
     if(newCard.isActive == 'Выполнено'){

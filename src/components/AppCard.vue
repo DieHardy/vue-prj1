@@ -21,8 +21,11 @@ const props = defineProps({
         type: Number
     },
     card: {
-        type: Object
-    }
+        type: Object,
+        default() {
+        return { title: 'hello', description: 'description', isActive: true}
+      }
+    },
 })
 
 </script>
