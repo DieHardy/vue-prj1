@@ -52,6 +52,16 @@
 </template>
 <script setup>
 
+import {defineEmits} from 'vue'
+const emit = defineEmits(['set-card'])
+
+
+const newCard = {
+    id: 5,
+    title: '',
+    description: '',
+    isActive: false,
+}
 
 
 const addCard = () =>
@@ -62,12 +72,8 @@ const addCard = () =>
     else{
         newCard.isActive = false
     }
+    emit('set-card', newCard)
     console.log(newCard);
-}
-const newCard = {
-    title: '',
-    description: '',
-    isActive: false,
 }
 </script>
 <style >
