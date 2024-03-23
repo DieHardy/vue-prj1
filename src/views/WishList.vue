@@ -11,7 +11,7 @@
 
         <div class="d-flex justify-space-evenly flex-wrap flex-row">
            <app-card 
-           v-for="(item, index) in cards" 
+           v-for="(item, index) in props.cards" 
            :card="item" 
            :index="index"
            :key="item.id" 
@@ -34,7 +34,6 @@ const props = defineProps({
     }
 })
 
-console.log(props.cards)
 </script>
 <style scoped>
 

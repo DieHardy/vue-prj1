@@ -73,7 +73,7 @@ const addCard = () =>
         newCard.isActive = false
     }
     emit('set-card', newCard)
-    console.log(newCard);
+
 }
 </script>
 <style >

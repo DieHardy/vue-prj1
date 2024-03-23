@@ -6,7 +6,7 @@
                     <h3 class="text-green ma-5  text-h4 text-md-h4 text-lg-h3">Форма редактирования</h3>
                  </v-col>
             </v-row>
-            <v-form  @submit.prevent="addCard">
+            <v-form @submit.prevent="updateCard">
         <v-container>
           <v-row>
             <v-col
@@ -14,10 +14,10 @@
               md="2"
             >
               <v-text-field 
-                :value="card.title" @input="setTitle"
+                v-model="editedCard.title"
                 label="Название"
                 required
-              >{{ card.title }}</v-text-field>
+              ></v-text-field>
             </v-col>
     
             <v-col
@@ -25,16 +25,17 @@
               md="4"
             >
               <v-text-field
-                :value="card.description" @input="setDescription"
+              v-model="editedCard.description"
                 label="Описание желания"
                 required
-              >{{ card.description }}</v-text-field>
+              ></v-text-field>
             </v-col>
             <v-col cols="2" md="4" sm="6" xs="3">
-                <v-selec   :value="card.isActive" @input="setIsActive"
+                <v-select   
+                v-model="editedCard.isActive"
                 label="Select"
                 :items="['Выполнено', 'Не выполнено']"
-                >{{ card.isActive }}</v-selec>
+                ></v-select>
             </v-col>
             <v-col offset="1"></v-col>
             <v-col cols="6" >
@@ -52,16 +53,31 @@
     </template>
     <script setup>
     
-    import { defineProps, defineEmits} from 'vue'
-    const emit = defineEmits(['set-card'])
-    
+    import {defineProps, defineEmits} from 'vue'
+    import {watch} from 'vue'
+    import {ref} from 'vue'
+
     const props = defineProps({
       card: {type: Object}
     })
-    
+ 
+    let editedCard = ref({
+      id: 0,
+      title: '',
+      description: ''
+    })
 
+    watch( ()=> props.card, (newValue) => {
+      editedCard.value = newValue
+    })
 
-    emit('set-card', props.card)
+    const emit = defineEmits(['update-card'])
+
+    const updateCard=()=>{
+     editedCard.value.isActive = editedCard.value.isActive == 'Выполнено' || editedCard.value.isActive == true ? true : false
+     emit('update-card', editedCard.value)
+     editedCard.value = ''
+    }
     </script>
     <style >
     </style>

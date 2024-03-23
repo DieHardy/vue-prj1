@@ -1,9 +1,11 @@
 <template>
   <v-app>
     <v-main>
-      <FormEdit :card="cardForEdit"/>
+      <FormEdit :card="cardForEdit" @update-card="updateCard"/>
       <FormCreate @set-card="addCard" />
-      <router-view  :cards="cards" @click-by-card="OpenCardForEdit" />
+      <router-view v-if="isLoading" :cards="cards" @click-by-card="OpenCardForEdit" />
+      <v-img v-else width="500" src="../public/loading.gif">
+      </v-img>
     </v-main>
   </v-app>
 </template>
@@ -14,7 +16,14 @@ import FormEdit from './components/FormEdit.vue'
 import FormCreate from './components/FormCreate.vue'
 
 import {ref} from 'vue'
-const cards = ref([
+let cards = ref([
+
+])
+let isLoading = ref(false)
+const loadCards = () => {
+  setTimeout( ()=> {
+    isLoading.value = true
+  cards.value = [    
     {
         id: 1,
         title: 'Игрушка 1',
@@ -32,15 +41,17 @@ const cards = ref([
         title: 'Снеки',
         description: ':3',
         isActive: false,
-    },
-])
+    },] 
+}, 2000)
+isLoading.value = false
+}
+loadCards()
 
 const addCard = (card) =>{
     cards.value.push(card);
 }
 const OpenCardForEdit = (card) =>{
     cardForEdit.value = Object.assign({}, card)
-    console.log(cardForEdit.value)
 }
 
 const cardForEdit = ref({
@@ -50,5 +61,9 @@ const cardForEdit = ref({
   isActive: false,
 })
 
+const updateCard = (card) => {
+  console.log(card)
+  cards.value = cards.value.map ((element) => element.id == card.id ? card : element)
+}
 
 </script>
